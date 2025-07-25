@@ -34,8 +34,8 @@ db.on('connected',()=>{
     console.log('connected to mongoDB server')
 })
 
-db.on('error',()=>{
-    console.log('connected to mongoDB server')
+db.on('error',(err)=>{
+    console.error('connected to mongoDB server')
 })
 
 db.on('disconnected',()=>{
