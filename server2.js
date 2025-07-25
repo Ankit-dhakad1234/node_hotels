@@ -3,6 +3,9 @@ const app = express();
 import db from './db.js'; 
 import person from './models/Person.js'
 import MenuItem from './models/MenuItem.js';
+import dotenv from 'dotenv';
+dotenv.config(); // Load environment variables
+
 
 import bodyParser from 'body-parser';
 app.use(bodyParser.json()); //data stored at req.body
@@ -28,7 +31,9 @@ app.use('/person',personRoutes);
 import menuItemRoutes from './routes/menuItemRoutes.js'
 app.use('/menuItem',menuItemRoutes);
 
-app.listen(5050,()=>{
+const PORT = process.env.PORT || 5050;
+
+app.listen(PORT,()=>{
   console.log('server is listning on port 5050 and is live')
 }) // your server find at 3000
 

@@ -2,13 +2,18 @@
 //this file is responsible for that above connection 
 //there we write database connections only
 //mongoose act as a bridge
+import dotenv from 'dotenv';
+dotenv.config(); // Load environment variables
 
 import mongoose from 'mongoose';
 
 //define the mongoDB connection URL 
-const mongoURL = 'mongodb://localhost:27017/hotels' //we can replace mydatabase with our own database name
+// const mongoURL = 'mongodb://localhost:27017/hotels' //we can replace mydatabase with our own database name
 
+// const mongoDBURL = process.env.MONGODB_URL_LOCAL;
+const mongoURL = process.env.MONGO_URL;
 
+// const mongoURL = 'mongodb+srv://Ankit_Dhakad:complex1234@cluster0.zxq4njj.mongodb.net/'
 //set up mongoDB connection 
 mongoose.connect(mongoURL,{
     useNewUrlParser:true,
