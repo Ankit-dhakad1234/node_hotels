@@ -41,7 +41,7 @@ app.get('/',(req, res) => {
 //import the router fiiles
 import personRoutes from './routes/personRoutes.js'
 //use the routers
-app.use('/person',localAuthMiddleware,personRoutes);//we can use auth in any route
+app.use('/person',personRoutes);//we can use auth in any route
 
 import menuItemRoutes from './routes/menuItemRoutes.js'
 import { CgPassword } from 'react-icons/cg';
