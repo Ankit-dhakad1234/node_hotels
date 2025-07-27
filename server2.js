@@ -5,12 +5,27 @@ import person from './models/Person.js'
 import MenuItem from './models/MenuItem.js';
 import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables
-
-
 import bodyParser from 'body-parser';
+import passport from './auth.js';
+
+
 app.use(bodyParser.json()); //data stored at req.body
 
-app.get('/', (req, res) => {
+
+//Middleware function
+const logRequest = (req,res,next)=>{
+  console.log(`[${new Date().toLocaleString()}] Request made to: ${req.originalUrl}`);
+  next(); // Move to the next phase
+}
+
+app.use(logRequest);//this will log in every route
+
+app.use(passport.initialize());
+
+const localAuthMiddleware = passport.authenticate('local',{session:false})
+
+
+app.get('/',(req, res) => {
   res.send('Welcome to our hotel')
 })
 
@@ -26,9 +41,10 @@ app.get('/', (req, res) => {
 //import the router fiiles
 import personRoutes from './routes/personRoutes.js'
 //use the routers
-app.use('/person',personRoutes);
+app.use('/person',localAuthMiddleware,personRoutes);//we can use auth in any route
 
 import menuItemRoutes from './routes/menuItemRoutes.js'
+import { CgPassword } from 'react-icons/cg';
 app.use('/menuItem',menuItemRoutes);
 
 const PORT = process.env.PORT || 5050;

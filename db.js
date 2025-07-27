@@ -10,8 +10,8 @@ import mongoose from 'mongoose';
 //define the mongoDB connection URL 
 // const mongoURL = 'mongodb://localhost:27017/hotels' //we can replace mydatabase with our own database name
 
-// const mongoDBURL = process.env.MONGODB_URL_LOCAL;
-const mongoURL = process.env.MONGO_URL;
+const mongoURL = process.env.MONGODB_URL_LOCAL;
+// const mongoURL = process.env.MONGO_URL;
 
 // const mongoURL = 'mongodb+srv://Ankit_Dhakad:complex1234@cluster0.zxq4njj.mongodb.net/'
 //set up mongoDB connection 
@@ -35,7 +35,7 @@ db.on('connected',()=>{
 })
 
 db.on('error',(err)=>{
-    console.error('connected to mongoDB server')
+    console.error('mongoDB connection error')
 })
 
 db.on('disconnected',()=>{
